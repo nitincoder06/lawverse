@@ -1,1 +1,1 @@
-export const ADMIN_UID = "mmSB0KnHhlVg4HSsxhwja8aTgsb2";
+export const ADMIN_UID = import.meta.env.VITE_ADMIN_UID;
