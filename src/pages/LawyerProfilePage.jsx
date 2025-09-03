@@ -40,47 +40,49 @@ function LawyerProfilePage() {
   }
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
-        <img
-          src={lawyer.photo}
-          alt={lawyer.name}
-          className="w-full h-64 md:h-auto md:w-1/3 object-cover"
-        />
-        <div className="p-6 md:p-8 flex flex-col justify-between">
-          <div>
-            <h1 className="text-4xl font-bold mb-2">{lawyer.name}</h1>
-            <p className="text-gray-600 mb-4">Location: {lawyer.location}</p>
-            
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full capitalize">{lawyer.type}</span>
-              <span className="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full">{lawyer.experience} years experience</span>
+    <div className="bg-stone-50 min-h-screen py-12">
+      <div className="container mx-auto p-4 md:p-8">
+        <div className="bg-white shadow-xl rounded-lg overflow-hidden md:flex border border-stone-100">
+          <img
+            src={lawyer.photo}
+            alt={lawyer.name}
+            className="w-full h-80 md:h-auto md:w-1/3 object-cover"
+          />
+          <div className="p-6 md:p-8 flex flex-col justify-between font-sans">
+            <div>
+              <h1 className="text-4xl font-serif font-bold text-gray-800 mb-2">{lawyer.name}</h1>
+              <p className="text-gray-500 mb-4">Location: {lawyer.location}</p>
+              
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="bg-stone-100 text-stone-800 text-sm font-semibold px-3 py-1 rounded-full capitalize">{lawyer.type} Law</span>
+                <span className="bg-stone-100 text-stone-800 text-sm font-semibold px-3 py-1 rounded-full">{lawyer.experience} years experience</span>
+              </div>
+
+              <div className="mb-6">
+                <h2 className="text-2xl font-serif font-bold text-gray-800 mb-2">About</h2>
+                <p className="text-gray-600 leading-relaxed">{lawyer.bio}</p>
+              </div>
+
+              <div className="mb-6">
+                <h2 className="text-2xl font-serif font-bold text-gray-800 mb-2">Notable Cases</h2>
+                <ul className="list-disc list-inside text-gray-600 space-y-1">
+                  {lawyer.cases.map((caseItem, index) => (
+                    <li key={index}>{caseItem}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold mb-2">About</h2>
-              <p className="text-gray-700">{lawyer.bio}</p>
+            <div className="mt-6 border-t border-stone-200 pt-6">
+              <h2 className="text-2xl font-serif font-bold text-gray-800 mb-2">Book an Appointment</h2>
+              <p className="text-xl font-bold text-amber-600 mb-4">₹{lawyer.charges} / session</p>
+              <Link
+                to={`/lawyer/${lawyer.id}/book`}
+                className="w-full block bg-amber-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-700 text-center transition-colors duration-300 shadow-lg"
+              >
+                Book Now
+              </Link>
             </div>
-
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold mb-2">Notable Cases</h2>
-              <ul className="list-disc list-inside text-gray-700">
-                {lawyer.cases.map((caseItem, index) => (
-                  <li key={index}>{caseItem}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Book an Appointment</h2>
-            <p className="text-lg font-bold text-green-600 mb-4">Charges: ₹{lawyer.charges} / session</p>
-            <Link
-              to={`/lawyer/${lawyer.id}/book`}
-              className="w-full block bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 text-center"
-            >
-              Book Now
-            </Link>
           </div>
         </div>
       </div>
