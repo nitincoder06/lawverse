@@ -9,6 +9,7 @@ function AdminPage() {
   const [charges, setCharges] = useState(3000);
   const [type, setType] = useState('civil');
   const [location, setLocation] = useState('');
+  const [officeAddress, setOfficeAddress] = useState('');
   const [court, setCourt] = useState('');
   const [bio, setBio] = useState('');
   const [cases, setCases] = useState('');
@@ -23,14 +24,14 @@ function AdminPage() {
 
   const clearLawyerForm = () => {
     setName(''); setPhoto(''); setExperience(5); setCharges(3000);
-    setType('civil'); setLocation(''); setCourt(''); setBio(''); setCases('');
+    setType('civil'); setLocation(''); setOfficeAddress(''); setCourt(''); setBio(''); setCases('');
   };
 
   const handleLawyerSubmit = async (e) => {
     e.preventDefault();
     const lawyerData = {
       name, photo, experience: parseInt(experience, 10),
-      charges: parseInt(charges, 10), type, location,
+      charges: parseInt(charges, 10), type, location, officeAddress,
       court: court.split(',').map(item => item.trim().toLowerCase()),
       bio, cases: cases.split(',').map(item => item.trim()),
     };
@@ -83,13 +84,21 @@ function AdminPage() {
               <div className="mb-4"><label htmlFor="photo" className="block text-gray-700 font-bold mb-2">Photo URL</label><input type="text" id="photo" value={photo} onChange={(e) => setPhoto(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" /></div>
               <div className="mb-4"><label htmlFor="experience" className="block text-gray-700 font-bold mb-2">Experience (Years)</label><input type="number" id="experience" value={experience} onChange={(e) => setExperience(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required /></div>
               <div className="mb-4"><label htmlFor="charges" className="block text-gray-700 font-bold mb-2">Charges per Session</label><input type="number" id="charges" value={charges} onChange={(e) => setCharges(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required /></div>
-              <div className="mb-4"><label htmlFor="bio" className="block text-gray-700 font-bold mb-2">Bio</label><textarea id="bio" value={bio} onChange={(e) => setBio(e.target.value)} rows="4" className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea></div>
+              <div className="mb-4"><label htmlFor="bio" className="block text-gray-700 font-bold mb-2">Bio</label><textarea id="bio" value={bio} onChange={(e) => setBio(e.target.value)} rows="4" className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required></textarea></div>
             </div>
             <div>
-              <div className="mb-4"><label htmlFor="type" className="block text-gray-700 font-bold mb-2">Type</label><select id="type" value={type} onChange={(e) => setType(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-500"><option value="civil">Civil</option><option value="criminal">Criminal</option><option value="both">Both</option></select></div>
-              <div className="mb-4"><label htmlFor="location" className="block text-gray-700 font-bold mb-2">Location</label><input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" /></div>
-              <div className="mb-4"><label htmlFor="court" className="block text-gray-700 font-bold mb-2">Practicing Courts</label><input type="text" id="court" value={court} onChange={(e) => setCourt(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="e.g., high court, supreme court" /><p className="text-xs text-gray-500 mt-1">Separate multiple courts with a comma.</p></div>
-              <div className="mb-4"><label htmlFor="cases" className="block text-gray-700 font-bold mb-2">Notable Cases</label><textarea id="cases" value={cases} onChange={(e) => setCases(e.target.value)} rows="4" className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="e.g., Case v. Another, Another Case"></textarea><p className="text-xs text-gray-500 mt-1">Separate multiple cases with a comma.</p></div>
+              <div className="mb-4">
+                <label htmlFor="type" className="block text-gray-700 font-bold mb-2">Type</label>
+                <select id="type" value={type} onChange={(e) => setType(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                  <option value="civil">Civil</option>
+                  <option value="criminal">Criminal</option>
+                  <option value="both">Both</option>
+                </select>
+              </div>
+              <div className="mb-4"><label htmlFor="location" className="block text-gray-700 font-bold mb-2">Location (City)</label><input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required /></div>
+              <div className="mb-4"><label htmlFor="officeAddress" className="block text-gray-700 font-bold mb-2">Office Address</label><input type="text" id="officeAddress" value={officeAddress} onChange={(e) => setOfficeAddress(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required /></div>
+              <div className="mb-4"><label htmlFor="court" className="block text-gray-700 font-bold mb-2">Practicing Courts</label><input type="text" id="court" value={court} onChange={(e) => setCourt(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="e.g., high court, supreme court" required /><p className="text-xs text-gray-500 mt-1">Separate multiple courts with a comma.</p></div>
+              <div className="mb-4"><label htmlFor="cases" className="block text-gray-700 font-bold mb-2">Notable Cases</label><textarea id="cases" value={cases} onChange={(e) => setCases(e.target.value)} rows="2" className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="e.g., Case v. Another, Another Case" required></textarea><p className="text-xs text-gray-500 mt-1">Separate multiple cases with a comma.</p></div>
             </div>
           </div>
           <div className="mt-6"><button type="submit" className="w-full bg-amber-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-700 transition-colors duration-300 shadow-lg">Add Lawyer to Database</button></div>
@@ -109,7 +118,7 @@ function AdminPage() {
           <h2 className="text-3xl font-serif font-bold text-gray-800 mb-6">Add New E-book</h2>
           <form onSubmit={handleEbookSubmit}>
             <div className="mb-4"><label htmlFor="ebookTitle" className="block text-gray-700 font-bold mb-2">E-book Title</label><input type="text" id="ebookTitle" value={ebookTitle} onChange={(e) => setEbookTitle(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required /></div>
-            <div className="mb-4"><label htmlFor="ebookDesc" className="block text-gray-700 font-bold mb-2">Description</label><textarea id="ebookDesc" value={ebookDesc} onChange={(e) => setEbookDesc(e.g.target.value)} rows="3" className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea></div>
+            <div className="mb-4"><label htmlFor="ebookDesc" className="block text-gray-700 font-bold mb-2">Description</label><textarea id="ebookDesc" value={ebookDesc} onChange={(e) => setEbookDesc(e.target.value)} rows="3" className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required></textarea></div>
             <div className="mb-4"><label htmlFor="ebookLink" className="block text-gray-700 font-bold mb-2">Link to Document</label><input type="text" id="ebookLink" value={ebookLink} onChange={(e) => setEbookLink(e.target.value)} className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required /></div>
             <div className="mt-6"><button type="submit" className="w-full bg-amber-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-700 transition-colors duration-300 shadow-lg">Add E-book to Database</button></div>
           </form>

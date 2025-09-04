@@ -44,6 +44,7 @@ function BookingPage() {
       lawyerName: lawyer.name,
       lawyerPhoto: lawyer.photo,
       lawyerLocation: lawyer.location,
+      officeAddress: lawyer.officeAddress,
       date,
       time,
       status: 'confirmed'

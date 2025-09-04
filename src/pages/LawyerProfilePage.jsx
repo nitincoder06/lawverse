@@ -51,7 +51,8 @@ function LawyerProfilePage() {
           <div className="p-6 md:p-8 flex flex-col justify-between font-sans">
             <div>
               <h1 className="text-4xl font-serif font-bold text-gray-800 mb-2">{lawyer.name}</h1>
-              <p className="text-gray-500 mb-4">Location: {lawyer.location}</p>
+              <p className="text-gray-500 mb-1">Location: {lawyer.location}</p>
+              <p className="text-gray-500 mb-4 font-semibold">{lawyer.officeAddress}</p>
               
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-stone-100 text-stone-800 text-sm font-semibold px-3 py-1 rounded-full capitalize">{lawyer.type} Law</span>

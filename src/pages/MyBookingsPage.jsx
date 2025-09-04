@@ -68,7 +68,7 @@ function MyBookingsPage() {
                 />
                 <div className="flex-grow text-center md:text-left">
                   <h2 className="text-2xl font-bold text-gray-800">{booking.lawyerName}</h2>
-                  <p className="text-gray-500">Location: {booking.lawyerLocation}</p>
+                  <p className="text-gray-500 font-semibold">{booking.officeAddress}</p>
                   <div className="my-4 p-4 bg-stone-50 rounded-lg border border-stone-200">
                     <p className="font-semibold">Date: <span className="font-normal">{new Date(booking.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span></p>
                     <p className="font-semibold">Time: <span className="font-normal">{booking.time}</span></p>

@@ -18,8 +18,12 @@ function ProtectedRoute({ children, adminOnly }) {
     return <Navigate to="/login" />;
   }
 
-  if (adminOnly && currentUser.uid !== ADMIN_UID) {
-    return <Navigate to="/" />;
+  if (adminOnly) {
+    console.log("Current User UID:", currentUser.uid);
+    console.log("Required Admin UID:", ADMIN_UID);
+    if (currentUser.uid !== ADMIN_UID) {
+      return <Navigate to="/" />;
+    }
   }
 
   return children;
