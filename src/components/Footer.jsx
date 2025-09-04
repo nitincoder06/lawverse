@@ -24,7 +24,7 @@ function Footer() {
         </div>
       </div>
       <div className="text-center text-gray-500 text-xs mt-8 pt-8 border-t border-gray-700">
-        <p>&copy; 2025 Lawverse. All Rights Reserved.</p>
+        
       </div>
     </footer>
   );
